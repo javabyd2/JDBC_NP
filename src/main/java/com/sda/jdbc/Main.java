@@ -4,21 +4,12 @@ import java.sql.*;
 
 public class Main {
 
-    public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    public static final String DB_URL = "jdbc:mysql://127.0.0.1/rental_db?useSSL=false&serverTimezone=UTC";
-
-    public static final String USER = "root";
-    public static final String PASSWORD = "HasloRuta";
-
-
     public static void main(String[] args) {
-        // write your code here
-        Connection connection = null;
+
+        Connection connection = DBConnector.getConnection();
         Statement statement = null;
         try {
 
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
             statement = connection.createStatement();
             String sql = "select * from customer";
             ResultSet resultSet = statement.executeQuery(sql);
@@ -32,8 +23,7 @@ public class Main {
         }
 
         try {
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+
             statement = connection.createStatement();
             String sql = "select * from car order by mark asc";
             ResultSet resultSet = statement.executeQuery(sql);
@@ -48,8 +38,6 @@ public class Main {
 
         try {
 
-            Class.forName(JDBC_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
          /*   String sql = "insert into customer (first_name, postal_code, address) values (?, ?, ?) ";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, "nowa wartość");
@@ -58,7 +46,7 @@ public class Main {
             preparedStatement.executeUpdate();*/
             String sql0 = "update customer set last_name = 'ToJa' where first_name = 'Natalia'";
             PreparedStatement preparedStatement0 = connection.prepareStatement(sql0);
-            preparedStatement0.executeUpdate();
+            //preparedStatement0.executeUpdate();
 
             String sql2 = "update car set model = 'Rdza' where model = 'Astra'";
             PreparedStatement preparedStatement1 = connection.prepareStatement(sql2);
@@ -74,6 +62,6 @@ public class Main {
             e.printStackTrace();
         }
 
-
+        DBConnector.closeConnection();
     }
 }

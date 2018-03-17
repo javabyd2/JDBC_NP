@@ -7,13 +7,13 @@ import java.sql.SQLException;
 public class DBConnector {
 
     private static Connection connection = null;
-    private final static String ADDRESS = "";
-    private final static String DATABASE = "";
-    private final static String USER = "";
-    private final static String PASSWORD = "";
-    private final static String PORT = "";
-    private final static String DRIVER = "";
-    private final static String PARAMS = "";
+    private final static String ADDRESS = "jdbc:mysql://127.0.0.1";
+    private final static String DATABASE = "rental_db";
+    private final static String USER = "root";
+    private final static String PASSWORD = "HasloRuta";
+    private final static String PORT = "3306";
+    private final static String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private final static String PARAMS = "useSSL=false&serverTimezone=UTC";
 
     private static void loadDriver(){
         try{
